@@ -20,7 +20,7 @@
     "StudentExercise5_WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/exercise",
+      "launchUrl": "api/instructor",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
