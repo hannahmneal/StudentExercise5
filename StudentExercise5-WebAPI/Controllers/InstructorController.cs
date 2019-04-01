@@ -91,8 +91,8 @@ namespace StudentExercise5_WebAPI.Controllers
                             instructor_cohort_id = reader.GetInt32(reader.GetOrdinal("instructor_cohort_id")),
                             Cohort = new Cohort
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("cohortid")),
-                                CohortName = reader.GetString(reader.GetOrdinal("cohortname"))
+                                Id = reader.GetInt32(reader.GetOrdinal("instructor_cohort_id")),
+                                CohortName = reader.GetString(reader.GetOrdinal("CohortName"))
                             }
                         };
                     }
@@ -112,7 +112,7 @@ namespace StudentExercise5_WebAPI.Controllers
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO instructor (InstructorFirstName, InstructorLastName, InstructorSlackHandle, instructor_cohort_id)
+                    cmd.CommandText = @"INSERT INTO Instructor (InstructorFirstName, InstructorLastName, InstructorSlackHandle, instructor_cohort_id)
                                              OUTPUT INSERTED.Id
                                              VALUES (@InstructorFirstName, @InstructorLastName, @InstructorSlackHandle, @instructor_cohort_id)";
                     cmd.Parameters.Add(new SqlParameter("@InstructorFirstName", newInstructor.InstructorFirstName));
@@ -136,11 +136,11 @@ namespace StudentExercise5_WebAPI.Controllers
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"UPDATE instructor 
-                                           SET firstname = @InstructorFirstName, 
-                                               lastname = @InstructorLastName,
-                                               slackhandle = @InstructorSlackHandle, 
-                                               cohortid = @instructor_cohort_id
+                    cmd.CommandText = @"UPDATE Instructor 
+                                           SET InstructorFirstName = @InstructorFirstName, 
+                                               InstructorLastName = @InstructorLastName,
+                                               InstructorSlackHandle = @InstructorSlackHandle, 
+                                               instructor_cohort_id = @instructor_cohort_id
                                          WHERE id = @id;";
                     cmd.Parameters.Add(new SqlParameter("@InstructorFirstName", instructor.InstructorFirstName));
                     cmd.Parameters.Add(new SqlParameter("@InstructorLastName", instructor.InstructorLastName));
@@ -162,8 +162,8 @@ namespace StudentExercise5_WebAPI.Controllers
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM instructor WHERE id = @id;";
-                    cmd.Parameters.Add(new SqlParameter("@id", id));
+                    cmd.CommandText = "DELETE FROM Instructor WHERE Id = @id;";
+                    cmd.Parameters.Add(new SqlParameter("@Id", id));
 
                     cmd.ExecuteNonQuery();
                 }
