@@ -103,7 +103,7 @@ namespace StudentExercise5_WebAPI.Controllers
             }
         }
 
-        // POST: api/Instructors
+        // POST: api/Instructor
         [HttpPost]
         public ActionResult Post([FromBody] Instructor newInstructor)
         {
@@ -141,7 +141,7 @@ namespace StudentExercise5_WebAPI.Controllers
                                                InstructorLastName = @InstructorLastName,
                                                InstructorSlackHandle = @InstructorSlackHandle, 
                                                instructor_cohort_id = @instructor_cohort_id
-                                         WHERE id = @id;";
+                                         WHERE id = @id";
                     cmd.Parameters.Add(new SqlParameter("@InstructorFirstName", instructor.InstructorFirstName));
                     cmd.Parameters.Add(new SqlParameter("@InstructorLastName", instructor.InstructorLastName));
                     cmd.Parameters.Add(new SqlParameter("@InstructorSlackHandle", instructor.InstructorSlackHandle));
